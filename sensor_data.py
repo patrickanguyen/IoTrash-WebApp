@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import requests
+import datetime
 
 load_dotenv()
 AIO_KEY = os.environ.get("AIO_KEY")
@@ -22,7 +23,8 @@ def get_fullness():
 
     for data in fullness_json:
         # print(data)
-        fullness_labels.append(data["created_at"])
+        dt = datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%S%z").astimezone()
+        fullness_labels.append(dt.strftime("%d/%m/%Y %H:%M:%S"))
         fullness_values.append(int(data["value"]))
 
     fullness_data = Fullness(fullness_labels, fullness_values)
@@ -45,7 +47,8 @@ def get_temp():
 
     for data in temp_json:
         # print(data)
-        temp_labels.append(data["created_at"])
+        dt = datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%S%z").astimezone()
+        temp_labels.append(dt.strftime("%d/%m/%Y %H:%M:%S"))
         temp_values.append(int(data["value"]))
 
     temp_data = Temperature(temp_labels, temp_values)
