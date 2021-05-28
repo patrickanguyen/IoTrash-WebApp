@@ -24,8 +24,8 @@ def get_fullness():
     for data in fullness_json:
         # print(data)
         dt = datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%S%z").astimezone()
-        fullness_labels.append(dt.strftime("%d/%m/%Y %H:%M:%S"))
-        fullness_values.append(int(data["value"]))
+        fullness_labels.insert(0, dt.strftime("%d/%m/%Y %H:%M:%S"))
+        fullness_values.insert(0, int(data["value"]))
 
     fullness_data = Fullness(fullness_labels, fullness_values)
 
@@ -48,8 +48,8 @@ def get_temp():
     for data in temp_json:
         # print(data)
         dt = datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%S%z").astimezone()
-        temp_labels.append(dt.strftime("%d/%m/%Y %H:%M:%S"))
-        temp_values.append(int(data["value"]))
+        temp_labels.insert(0, dt.strftime("%d/%m/%Y %H:%M:%S"))
+        temp_values.insert(0, int(data["value"]))
 
     temp_data = Temperature(temp_labels, temp_values)
 

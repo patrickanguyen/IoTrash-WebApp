@@ -28,7 +28,7 @@
                     labels: {{ fullness_labels | safe }},
                     datasets: [
                         {
-                            label: "Fullness",
+                            label: "% Full",
                             data: {{ fullness_values | safe }},
                             fill: true,
                             borderColor: "rgb(75, 192, 0)",
@@ -37,7 +37,12 @@
                     ]
                 },
                 options: {
-                    responsive: false
+                    responsive: false,
+                    scales: {
+                        y: {
+                            suggestedMin: 10
+                        }
+                    }
                 }
             })
         </script>
@@ -54,7 +59,7 @@
                 labels: {{ temp_labels | safe }},
                 datasets: [
                     {
-                        label: "Temperature",
+                        label: "Temp (C)",
                         data: {{ temp_values | safe }},
                         fill: true,
                         borderColor: "rgb(0, 136, 163)",
@@ -63,7 +68,12 @@
                 ]
             },
             options: {
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        suggestedMin: 10
+                    }
+                }
             }
         })
         </script>
